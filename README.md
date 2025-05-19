@@ -1,1 +1,1079 @@
-web
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Fútbol - El Deporte Rey</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+  body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    background: #f5f7fa;
+    color: #222;
+    line-height: 1.6;
+  }
+  header {
+    background: linear-gradient(90deg, #006622 0%, #00cc44 100%);
+    color: white;
+    padding: 1rem 1.5rem;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  header h1 {
+    margin: 0;
+    font-weight: 700;
+  }
+  nav {
+    margin-top: 0.5rem;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  nav a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  nav a:hover {
+    color: #ffd700;
+  }
+  main {
+    max-width: 980px;
+    margin: 2rem auto 4rem;
+    padding: 0 1rem;
+  }
+  section {
+    margin-bottom: 3rem;
+    background: white;
+    padding: 1.5rem 2rem;
+    border-radius: 8px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  }
+  h2 {
+    color: #006622;
+    border-bottom: 3px solid #00cc44;
+    padding-bottom: 0.3rem;
+  }
+  h3 {
+    color: #00441a;
+    margin-top: 1rem;
+  }
+  a {
+    color: #0077cc;
+  }
+  a:hover {
+    color: #00447a;
+    text-decoration: underline;
+  }
+  img {
+    max-width: 100%;
+    border-radius: 6px;
+    margin: 0.6rem 0;
+  }
+  .video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    margin: 1rem 0;
+  }
+  .video-container iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 8px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+  }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 0.6rem 0.8rem;
+    vertical-align: top;
+  }
+  th {
+    background-color: #00cc44;
+    color: white;
+    text-align: center;
+  }
+  ul {
+    padding-left: 1.2rem;
+  }
+  .news-update {
+    margin-top: 1rem;
+  }
+  .news-item {
+    background: #e9ffe6;
+    border-left: 4px solid #00cc44;
+    padding: 0.8rem 1rem;
+    margin-bottom: 0.8rem;
+    border-radius: 4px;
+  }
+  form {
+    margin-top: 1.5rem;
+    background: #f1f8f1;
+    padding: 1rem;
+    border-radius: 6px;
+    box-shadow: inset 0 0 6px #b6eeb6;
+  }
+  label {
+    font-weight: 700;
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+  select, button, input[type="text"] {
+    padding: 0.4rem 0.6rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    border: 1px solid #00cc44;
+    margin-bottom: 0.8rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  button {
+    background-color: #00cc44;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  button:hover {
+    background-color: #007a1d;
+  }
+  footer {
+    text-align: center;
+    padding: 1.3rem 0;
+    background: #222;
+    color: #ddd;
+    font-size: 0.9rem;
+  }
+  .players-list {
+    columns: 2;
+    -webkit-columns: 2;
+    -moz-columns: 2;
+  }
+  .players-list li {
+    margin-bottom: 0.35rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .player-thumb {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #00cc44;
+  }
+  .bigclubs-list, .champions-list, .libertadores-list, .continentals-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    list-style: none;
+    padding-left: 0;
+  }
+  .bigclubs-list li, .champions-list li, .libertadores-list li, .continentals-list li {
+    flex: 1 1 45%;
+    background: #e6ffe6;
+    border: 2px solid #00cc44;
+    border-radius: 8px;
+    padding: 1rem;
+    box-sizing: border-box;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  .bigclubs-list img, .champions-list img, .libertadores-list img, .continentals-list img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    flex-shrink: 0;
+    background: white;
+  }
+  .bigclub-info, .champion-info, .libertadores-info, .continental-info {
+    flex: 1;
+  }
+  .wc-description {
+    font-style: italic;
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+    color: #00441a;
+  }
+  td img.flag-icon {
+    width: 48px;
+    height: 30px;
+    border-radius: 4px;
+    vertical-align: middle;
+    margin-right: 0.3rem;
+    border: 1px solid #ccc;
+  }
+  td .champion-cell {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-direction: column;
+    text-align: center;
+  }
+  td .champion-cell div.desc {
+    font-style: italic;
+    font-size: 0.85rem;
+    color: #00441a;
+    margin-bottom: 0.3rem;
+  }
+  @media (max-width: 600px) {
+    .players-list,
+    .bigclubs-list,
+    .champions-list,
+    .libertadores-list,
+    .continentals-list {
+      flex-direction: column;
+    }
+    nav {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .bigclubs-list li,
+    .champions-list li,
+    .libertadores-list li,
+    .continentals-list li {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .bigclubs-list img,
+    .champions-list img,
+    .libertadores-list img,
+    .continentals-list img {
+      width: 100px;
+      height: 100px;
+      margin-bottom: 0.5rem;
+    }
+    td .champion-cell {
+      flex-direction: column;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>FÚTBOL EL DEPORTE REY</h1>
+  <nav>
+    <a href="#history">Historia</a>
+    <a href="#worldcup">Mundiales</a>
+    <a href="#champions">Champions League</a>
+    <a href="#bigclubs">Grandes Clubes</a>
+    <a href="#southamerican">Fútbol Sudamericano</a>
+    <a href="#copaamerica">Copa América & Eurocopa</a>
+    <a href="#bestplayers">Jugadores Destacados</a>
+    <a href="#news">Noticias</a>
+    <a href="#polls">Encuestas</a>
+  </nav>
+</header>
+
+<main>
+  <section id="history">
+    <h2>Historia del Fútbol</h2>
+    <p>
+      El fútbol como deporte tiene sus orígenes en juegos de balón practicados desde la antigüedad, pero se popularizó como deporte organizado en Inglaterra durante el siglo XIX. La primera codificación oficial de sus reglas fue realizada en 1863 por la <a href="https://www.thefa.com/" target="_blank" rel="noopener">Football Association (FA)</a> en Londres, dando origen al fútbol moderno.
+    </p>
+    <p>
+      Desde entonces, el fútbol creció exponencialmente, creando ligas nacionales y copas internacionales. La <a href="https://www.fifa.com/" target="_blank" rel="noopener">FIFA</a> (Federación Internacional de Fútbol Asociación) fue fundada en 1904 para organizar el deporte a nivel mundial y creó el Mundial de Fútbol, celebrado por primera vez en 1930.
+    </p>
+    <p>
+      El fútbol ha sido parte importante del entretenimiento, la cultura y la identidad de países en todo el mundo, especialmente en Europa y Sudamérica.
+    </p>
+    <h3>Datos interesantes</h3>
+    <ul>
+      <li>El primer partido oficial registrado se jugó en 1863 en Londres.</li>
+      <li>El récord mundial de público en un partido es de aproximadamente 199,854 espectadores en el Maracaná, Brasil, durante la final del Mundial 1950.</li>
+      <li>El gol más rápido en la historia de la Copa del Mundo fue anotado por Hakan Şükür (Turquía) a los 11 segundos en 2002.</li>
+      <li>Pelé y Maradona son considerados dos de los más grandes íconos del fútbol mundial.</li>
+    </ul>
+    <div class="video-container" title="Historia del Fútbol">
+     <video aling=center src="f.mp4"   width="648" height="360" controls></video>
+    </div>
+  </section>
+
+  <section id="worldcup">
+    <h2>Mundiales de Fútbol</h2>
+    <p>
+      La Copa Mundial de la FIFA es el torneo de fútbol más prestigioso y esperado a nivel mundial. Se celebra cada cuatro años desde 1930 (excepto algunos años durante la Segunda Guerra Mundial). A continuación, una tabla con todos los campeones mundialistas y datos clave:
+         <h2>🌍 Copas Mundiales</h2>
+      <p>Desde 1930, el Mundial ha sido el torneo más importante del planeta. Brasil es el país más ganador con 5 títulos.</p>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Finales de la Copa Mundial de la FIFA</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    h1 {
+      text-align: center;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 6px;
+      text-align: center;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    .flag {
+      width: 20px;
+      vertical-align: middle;
+      margin-right: 5px;
+    }
+    .country {
+      white-space: nowrap;
+    }
+  </style>
+</head>
+  <h1>Finales de la Copa Mundial de la FIFA</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Fecha</th>
+        <th>Campeón</th>
+        <th>Resultado</th>
+        <th>Subcampeón</th>
+        <th>Estadio</th>
+        <th>Espectadores</th>
+        <th>Localización</th>
+        <th>Notas</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>30-07 1930</td><td class="country"><img src="https://flagcdn.com/uy.svg" class="flag">Uruguay</td><td>4:2</td><td class="country"><img src="https://flagcdn.com/ar.svg"  class="flag">Argentina</td><td>Centenario</td><td>68 346</td><td>Montevideo</td><td>1</td></tr>
+      <tr><td>10-06 1934</td><td class="country"><img src="https://flagcdn.com/it.svg" class="flag">Italia</td><td>2:1 (pr.)</td><td class="country"><img src="https://flagcdn.com/cz.svg" class="flag">Checoslovaquia</td><td>Nacional del PNF</td><td>50 000</td><td>Roma</td><td>5</td></tr>
+      <tr><td>19-06 1938</td><td class="country"><img src="https://flagcdn.com/it.svg" class="flag">Italia</td><td>4:2</td><td class="country"><img src="https://flagcdn.com/hu.svg" class="flag">Hungría</td><td>Olympique</td><td>45 124</td><td>París</td><td>8</td></tr>
+      <tr><td>16-07 1950</td><td class="country"><img src="https://flagcdn.com/uy.svg" class="flag">Uruguay</td><td>2:1</td><td class="country"><img src="https://flagcdn.com/br.svg" class="flag">Brasil</td><td>Maracaná</td><td>199 850</td><td>Río de Janeiro</td><td>10 11</td></tr>
+      <tr><td>04-07 1954</td><td class="country"><img src="https://flagcdn.com/de.svg" class="flag">Alemania Federal</td><td>3:2</td><td class="country"><img src="https://flagcdn.com/hu.svg" class="flag">Hungría</td><td>Wankdorfstadion</td><td>60 000</td><td>Berna</td><td>12 13</td></tr>
+      <tr><td>29-06 1958</td><td class="country"><img src="https://flagcdn.com/br.svg" class="flag">Brasil</td><td>5:2</td><td class="country"><img src="https://flagcdn.com/se.svg" class="flag">Suecia</td><td>Rasunda</td><td>51 800</td><td>Solna</td><td>14 15</td></tr>
+      <tr><td>17-06 1962</td><td class="country"><img src="https://flagcdn.com/br.svg" class="flag">Brasil</td><td>3:1</td><td class="country"><img src="https://flagcdn.com/cz.svg" class="flag">Checoslovaquia</td><td>Nacional</td><td>68 679</td><td>Santiago de Chile</td><td>16 17</td></tr>
+      <tr><td>30-07 1966</td><td class="country"><img src="https://flagcdn.com/gb.svg" class="flag">Inglaterra</td><td>4:2 (pr.)</td><td class="country"><img src="https://flagcdn.com/de.svg" class="flag">Alemania Federal</td><td>Wembley</td><td>97 924</td><td>Londres</td><td>18 19</td></tr>
+      <tr><td>21-06 1970</td><td class="country"><img src="https://flagcdn.com/br.svg" class="flag">Brasil</td><td>4:1</td><td class="country"><img src="https://flagcdn.com/it.svg" class="flag">Italia</td><td>Azteca</td><td>107 412</td><td>Ciudad de México</td><td>20 21</td></tr>
+      <tr><td>07-07 1974</td><td class="country"><img src="https://flagcdn.com/de.svg" class="flag">Alemania Federal</td><td>2:1</td><td class="country"><img src="https://flagcdn.com/nl.svg" class="flag">Países Bajos</td><td>Olímpico</td><td>75 200</td><td>Múnich</td><td>22 23</td></tr>
+      <tr><td>25-06 1978</td><td class="country"><img src="https://flagcdn.com/ar.svg" class="flag">Argentina</td><td>3:1 (pr.)</td><td class="country"><img src="https://flagcdn.com/nl.svg" class="flag">Países Bajos</td><td>Monumental</td><td>71 483</td><td>Buenos Aires</td><td>24 25</td></tr>
+      <tr><td>11-07 1982</td><td class="country"><img src="https://flagcdn.com/it.svg" class="flag">Italia</td><td>3:1</td><td class="country"><img src="https://flagcdn.com/de.svg" class="flag">Alemania Federal</td><td>Santiago Bernabéu</td><td>90 000</td><td>Madrid</td><td>26 27</td></tr>
+      <tr><td>29-06 1986</td><td class="country"><img src="https://flagcdn.com/ar.svg" class="flag">Argentina</td><td>3:2</td><td class="country"><img src="https://flagcdn.com/de.svg" class="flag">Alemania Federal</td><td>Azteca</td><td>114 600</td><td>Ciudad de México</td><td>28 29</td></tr>
+      <tr><td>08-07 1990</td><td class="country"><img src="https://flagcdn.com/de.svg" class="flag">Alemania Federal</td><td>1:0</td><td class="country"><img src="https://flagcdn.com/ar.svg" class="flag">Argentina</td><td>Olímpico</td><td>73 603</td><td>Roma</td><td>30 31</td></tr>
+      <tr><td>17-07 1994</td><td class="country"><img src="https://flagcdn.com/br.svg" class="flag">Brasil</td><td>0:0 (3:2 pen.)</td><td class="country"><img src="https://flagcdn.com/it.svg" class="flag">Italia</td><td>Rose Bowl</td><td>94 194</td><td>Pasadena</td><td>32 33</td></tr>
+      <tr><td>12-07 1998</td><td class="country"><img src="https://flagcdn.com/fr.svg" class="flag">Francia</td><td>3:0</td><td class="country"><img src="https://flagcdn.com/br.svg" class="flag">Brasil</td><td>Stade de France</td><td>75 000</td><td>Saint-Denis</td><td>34 35</td></tr>
+      <tr><td>30-06 2002</td><td class="country"><img src="https://flagcdn.com/br.svg" class="flag">Brasil</td><td>2:0</td><td class="country"><img src="https://flagcdn.com/de.svg" class="flag">Alemania</td><td>Internacional</td><td>69 029</td><td>Yokohama</td><td>36 37</td></tr>
+      <tr><td>09-07 2006</td><td class="country"><img src="https://flagcdn.com/it.svg" class="flag">Italia</td><td>1:1 (5:3 pen.)</td><td class="country"><img src="https://flagcdn.com/fr.svg" class="flag">Francia</td><td>Olímpico</td><td>69 000</td><td>Berlín</td><td>38 39</td></tr>
+      <tr><td>11-07 2010</td><td class="country"><img src="https://flagcdn.com/es.svg" class="flag">España</td><td>1:0 (pr.)</td><td class="country"><img src="https://flagcdn.com/nl.svg" class="flag">Países Bajos</td><td>Soccer City</td><td>84 490</td><td>Johannesburgo</td><td>40</td></tr>
+      <tr><td>13-07 2014</td><td class="country"><img src="https://flagcdn.com/de.svg" class="flag">Alemania</td><td>1:0 (pr.)</td><td class="country"><img src="https://flagcdn.com/ar.svg" class="flag">Argentina</td><td>Maracaná</td><td>74 738</td><td>Río de Janeiro</td><td>41</td></tr>
+      <tr><td>15-07 2018</td><td class="country"><img src="https://flagcdn.com/fr.svg" class="flag">Francia</td><td>4:2</td><td class="country"><img src="https://flagcdn.com/hr.svg" class="flag">Croacia</td><td>Luzhniki</td><td>78 011</td><td>Moscú</td><td>42</td></tr>
+      <tr><td>18-12 2022</td><td class="country"><img src="https://flagcdn.com/ar.svg" class="flag">Argentina</td><td>3:3 (4:2 pen.)</td><td class="country"><img src="https://flagcdn.com/fr.svg" class="flag">Francia</td><td>Lusail</td><td>88 966</td><td>Lusail</td><td>45</td></tr>
+  </table>
+    <p>
+      Para saber más sobre los mundiales: <a href="https://es.wikipedia.org/wiki/Copa_Mundial_de_F%C3%BAtbol" target="_blank">Wikipedia - Copa Mundial de Fútbol</a>
+    </p>
+    <div class="video-container" title="Momentos Destacados Mundiales de Fútbol">
+     <video aling=center src="m.mp4"   width="648" height="360" controls></video>
+    </div>
+  </section>
+
+  <section id="champions">
+    <h2>UEFA Champions League</h2>
+    <p>
+      La UEFA Champions League es el torneo europeo más prestigioso a nivel clubes, iniciado en 1955 como Copa de Europa. Ha sido escenario de grandes competencias y jugadores legendarios.
+    </p>
+    <p>
+      Los principales ganadores, sus historias y logros más destacados:
+    </p>
+    <ul class="champions-list">
+      <li>
+        <img src="https://upload.wikimedia.org/wikipedia/en/5/56/Real_Madrid_CF.svg" alt="Escudo Real Madrid" />
+        <div class="champion-info">
+          <strong>Real Madrid</strong><br/>
+          El club con más títulos en la historia del torneo: 14 Champions League. Dominó la competición desde sus inicios y cuenta con leyendas como Alfredo Di Stéfano y Cristiano Ronaldo.
+          <br/><a href="https://es.wikipedia.org/wiki/Real_Madrid_Club_de_F%C3%BAtbol" target="_blank">Más info</a>
+        </div>
+      </li>
+      <li>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Logo_of_AC_Milan.svg" alt="Escudo AC Milan" />
+        <div class="champion-info">
+          <strong>AC Milan</strong><br/>
+          7 títulos, club italiano con una rica historia europea y una defensa legendaria bajo el mando de Paolo Maldini.
+          <br/><a href="https://es.wikipedia.org/wiki/A.C._Milan" target="_blank">Más info</a>
+        </div>
+      </li>
+      <li>
+        <img src="https://upload.wikimedia.org/wikipedia/en/0/0c/Liverpool_FC.svg" alt="Escudo Liverpool" />
+        <div class="champion-info">
+          <strong>Liverpool</strong><br/>
+          6 Copas de Europa, uno de los clubes ingleses con mayor historia y tradición con figuras como Steven Gerrard y Kenny Dalglish.
+          <br/><a href="https://es.wikipedia.org/wiki/Liverpool_F.C." target="_blank">Más info</a>
+        </div>
+      </li>
+      <li>
+        <img src="https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.FbHgp195_66VUeIDzGiuagHaEK%26pid%3DApi&sp=1747657818Tc8b4e1e53e7833b9891dde533e807d1b8e80434ac6acadc1784ad9a5b7068054" alt="Escudo Bayern Múnich" />
+        <div class="champion-info">
+          <strong>Bayern Múnich</strong><br/>
+          Disco duro del fútbol alemán, con 6 títulos, una sólida podrá europea y leyendas en la defensa y el mediocampo.
+          <br/><a href="https://es.wikipedia.org/wiki/Bayern_de_M%C3%BAnich" target="_blank">Más info</a>
+        </div>
+      </li>
+      <li>
+        <img src="https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.4eLwPDOhLiS4DWexutPB7AHaEK%26pid%3DApi&sp=1747657888Tdcb73b3e7b434e356641fd311300a6f325298fa77656e5cf2230b1787fc3c893" alt="Escudo Barcelona" />
+        <div class="champion-info">
+          <strong>Barcelona</strong><br/>
+          5 títulos, famoso por su estilo de juego y cantera, jugadores como Messi y Guardiola han dejado su huella.
+          <br/><a href="https://es.wikipedia.org/wiki/F.C._Barcelona" target="_blank">Más info</a>
+        </div>
+      </li>
+      <li>
+        <img src="https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.ohGt4niubZVN35aaOmXCIAHaEK%26pid%3DApi&sp=1747657936T5885f5eb47898ca6ac6c3390d1168d4fe390a5cbe3fbf0dffb259330e52548e4" alt="Escudo Ajax" />
+        <div class="champion-info">
+          <strong>Ajax</strong><br/>
+          Club neerlandés con 4 Champions y un fútbol total revolucionario en los años 70.
+          <br/><a href="https://es.wikipedia.org/wiki/Ajax_Amsterdam" target="_blank">Más info</a>
+        </div>
+      </li>
+      <li>
+        <img src="https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.Ln1WEtwgIdelYtTBkpZVqAHaHa%26pid%3DApi&sp=1747657967T8129d537f10ae6b46927d5ed094223e167191a810f6ddf2f09668279d499eac6" alt="Escudo Manchester United" />
+        <div class="champion-info">
+          <strong>Manchester United</strong><br/>
+          3 títulos, uno de los emblemas ingleses con una historia rica, especialmente durante la era de Sir Alex Ferguson.
+          <br/><a href="https://es.wikipedia.org/wiki/Manchester_United_F.C." target="_blank">Más info</a>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <section id="bigclubs">
+    <h2>Los Clubes Más Grandes del Mundo</h2>
+    <p>
+      El fútbol mundial cuenta con clubes legendarios que marcan historia por sus logros, pasión y seguidores incondicionales. Algunos de los más destacados y sus características principales:
+    </p>
+    <ul class="bigclubs-list">
+      <li>
+        <img src="https://upload.wikimedia.org/wikipedia/en/5/56/Real_Madrid_CF.svg" alt="Escudo Real Madrid" />
+        <div class="bigclub-info">
+          <strong>Real Madrid (España)</strong><br/>
+          Fundado en 1902, es el club con más títulos de Liga de Campeones de la UEFA (14). Reconocido por su galácticos y por jugadores legendarios como Raúl, Cristiano Ronaldo y Alfredo Di Stéfano.
+          <br/><a href="https://es.wikipedia.org/wiki/Real_Madrid_Club_de_F%C3%BAtbol" target="_blank">Más info</a>
+        </div>
+      </li>
+      <li>
+        <img src="https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.4eLwPDOhLiS4DWexutPB7AHaEK%26pid%3DApi&sp=1747657888Tdcb73b3e7b434e356641fd311300a6f325298fa77656e5cf2230b1787fc3c893" alt="Escudo Barcelona" />
+        <div class="bigclub-info">
+          <strong>Barcelona (España)</strong><br/>
+          Fundado en 1899, famoso por su estilo ofensivo y cantera "La Masia". Ganador de 5 Champions League y revolucionario con técnicos como Guardiola y jugadores como Messi.
+          <br/><a href="https://es.wikipedia.org/wiki/F.C._Barcelona" target="_blank">Más info</a>
+        </div>
+      </li>
+      <li>
+        <img src="https://upload.wikimedia.org/wikipedia/en/7/7a/Manchester_United_FC_crest.svg" alt="Escudo Manchester United" />
+        <div class="bigclub-info">
+          <strong>Manchester United (Inglaterra)</strong><br/>
+          Fundado en 1878, uno de los clubes más exitosos de Inglaterra con 20 títulos de liga. Reconocido por leyendas como George Best, Ryan Giggs y Cristiano Ronaldo.
+          <br/><a href="https://es.wikipedia.org/wiki/Manchester_United_F.C." target="_blank">Más info</a>
+        </div>
+      </li>
+      <li>
+        <img src="https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.FbHgp195_66VUeIDzGiuagHaEK%26pid%3DApi&sp=1747657818Tc8b4e1e53e7833b9891dde533e807d1b8e80434ac6acadc1784ad9a5b7068054" alt="Escudo Bayern Múnich" />
+        <div class="bigclub-info">
+          <strong>Bayern Múnich (Alemania)</strong><br/>
+          Fundado en 1900, es el gigante del fútbol alemán con más de 30 títulos de Bundesliga y 6 Champions League. Ha contado con jugadores como Franz Beckenbauer y Philipp Lahm.
+          <br/><a href="https://es.wikipedia.org/wiki/Bayern_de_M%C3%BAnich" target="_blank">Más info</a>
+        </div>
+      </li>
+      <li>
+        <img src="https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.Kfzu6lhi8-isqfwjdUmqDQHaEK%26pid%3DApi&sp=1747658230Tb5b1872c48ae1fe20bbc96364da77e0f66fbbd513bccf2ad4d3e12a4232f5317" alt="Escudo Juventus" />
+        <div class="bigclub-info">
+          <strong>Juventus (Italia)</strong><br/>
+          Fundado en 1897, el club más laureado de Italia con 36 títulos de Serie A y dos finales de Champions League. Destacan jugadores como Alessandro Del Piero y Gianluigi Buffon.
+          <br/><a href="https://es.wikipedia.org/wiki/Juventus_F.C." target="_blank">Más info</a>
+        </div>
+      </li>
+      <li>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Logo_of_AC_Milan.svg" alt="Escudo AC Milan" />
+        <div class="bigclub-info">
+          <strong>AC Milan (Italia)</strong><br/>
+          Fundado en 1899, uno de los clubes más exitosos con 7 Champions League y grandes leyendas como Paolo Maldini y Franco Baresi.
+          <br/><a href="https://es.wikipedia.org/wiki/A.C._Milan" target="_blank">Más info</a>
+        </div>
+      </li>
+      <li>
+        <img src="https://upload.wikimedia.org/wikipedia/en/0/0c/Liverpool_FC.svg" alt="Escudo Liverpool" />
+        <div class="bigclub-info">
+          <strong>Liverpool (Inglaterra)</strong><br/>
+          Fundado en 1892, uno de los grandes de Inglaterra con 6 Champions League y un legado histórico liderado por Steven Gerrard y Kenny Dalglish.
+          <br/><a href="https://es.wikipedia.org/wiki/Liverpool_F.C." target="_blank">Más info</a>
+        </div>
+      </li>
+      <li>
+        <img src="https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.NrfcyxKguS7gNv_zt8RnxwHaEK%26pid%3DApi&sp=1747658270Tc542833d01aef4c5910851f9cf98b1a31efe7879e487fbca39d3d0f9f3285399" alt="Escudo Paris Saint-Germain" />
+        <div class="bigclub-info">
+          <strong>Paris Saint-Germain (Francia)</strong><br/>
+          Fundado en 1970, actualmente una potencia europea con fichajes estelares como Neymar y Mbappé, varios títulos franceses y aspiraciones UEFA.
+          <br/><a href="https://es.wikipedia.org/wiki/Paris_Saint-Germain_F.C." target="_blank">Más info</a>
+        </div>
+      </li>
+      <li>
+        <img src="https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.qwNCNSeywzPxiJILK7VP2AHaHa%26pid%3DApi&sp=1747658300T911af986e1a70b1f916872b9800284d96fedb307ced78ca46b6befcad0bfcddd" alt="Escudo Boca Juniors" />
+        <div class="bigclub-info">
+          <strong>Boca Juniors (Argentina)</strong><br/>
+          Fundado en 1905, uno de los clubes más populares de Argentina. Ha ganado 6 Copas Libertadores y es conocido por grandes figuras como Maradona y Juan Román Riquelme.
+          <br/><a href="https://es.wikipedia.org/wiki/Boca_Juniors" target="_blank">Más info</a>
+        </div>
+      </li>
+      <li>
+        <img src="https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.4h_LcMwtUvKFwJbbZ2kxJgHaJQ%26pid%3DApi&sp=1747658339Td085757f5a2da1616ece23ae779df90b0216b6167fcc5c179fbf4d5aa2778a06" alt="Escudo Corinthians" />
+        <div class="bigclub-info">
+          <strong>Corinthians (Brasil)</strong><br/>
+          Fundado en 1910, uno de los gigantes brasileños con múltiples títulos nacionales e internacionales, incluyendo 2 Copas Libertadores.
+          <br/><a href="https://es.wikipedia.org/wiki/Corinthians" target="_blank">Más info</a>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <section id="southamerican">
+    <h2>Fútbol Sudamericano y Copa Libertadores</h2>
+    <p>
+      Sudamérica es cuna de grandes tradiciones futbolísticas, con países como Brasil, Argentina y Uruguay que han dominado a nivel mundial. La <a href="https://es.wikipedia.org/wiki/Copa_Libertadores" target="_blank">Copa Libertadores</a>, fundada en 1960, es el torneo de clubes más prestigioso del continente.
+    </p>
+    <h3>Campeones destacados</h3>
+    <ul class="libertadores-list">
+      <li>
+        <img src="https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.hCbvdBmih1fP4jszGbFu3wHaHr%26pid%3DApi&sp=1747658490T4bddd20e9e49be25aebf7d806bf466bae216308de40bb7ec482abdebb1a23430" alt="Escudo Independiente" />
+        <div class="libertadores-info">
+          <strong>Independiente (Argentina)</strong><br/>
+          El "Rey de Copas" con récord de 7 títulos de Copa Libertadores. Club histórico y dominador continental.
+          <br/><a href="https://es.wikipedia.org/wiki/Club_Atl%C3%A9tico_Independiente" target="_blank">Más info</a>
+        </div>
+      </li>
+      <li>
+        <img src="https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.qwNCNSeywzPxiJILK7VP2AHaHa%26pid%3DApi&sp=1747658300T911af986e1a70b1f916872b9800284d96fedb307ced78ca46b6befcad0bfcddd" alt="Escudo Boca Juniors" />
+        <div class="libertadores-info">
+          <strong>Boca Juniors (Argentina)</strong><br/>
+          6 Copas Libertadores, enorme rival local e internacional, con apasionada hinchada y gran tradición.
+          <br/><a href="https://es.wikipedia.org/wiki/Boca_Juniors" target="_blank">Más info</a>
+        </div>
+      </li>
+      <li>
+        <img src="https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.px1AJHeRv79bMXAdyTnglQHaHa%26pid%3DApi&sp=1747658534T873f848390ace7f50b234fbd154cdf1121f79d8342c8828ff52c203fef533a7d" alt="Escudo Peñarol" />
+        <div class="libertadores-info">
+          <strong>Peñarol (Uruguay)</strong><br/>
+          5 títulos, fuerza histórica uruguaya con potente presencia en Libertadores y campeonatos nacionales.
+          <br/><a href="https://es.wikipedia.org/wiki/Club_Atl%C3%A9tico_Pe%C3%B1arol" target="_blank">Más info</a>
+        </div>
+      </li>
+      <li>
+        <img src="https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.kP_d6rNLShmbKC5jyGIySAHaFj%26pid%3DApi&sp=1747658570Tb964f6be7f9bfbc06a517f44296f291ad1ffd9ca7dc92218e054fc3b383f1e03" alt="Escudo River Plate" />
+        <div class="libertadores-info">
+          <strong>River Plate (Argentina)</strong><br/>
+          4 Copas Libertadores, conocido por su escuela de talentos y éxito internacional.
+          <br/><a href="https://es.wikipedia.org/wiki/Club_Atl%C3%A9tico_River_Plate" target="_blank">Más info</a>
+        </div>
+      </li>
+      <li>
+        <img src="https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.NKHcUJL83QAl9g-_UmU1UQHaHa%26pid%3DApi&sp=1747658600T5424d0ee4055091dc15b6f3ccbe33f87a356e76d82b601d4bf1a671b16fad2a0" alt="Escudo São Paulo FC" />
+        <div class="libertadores-info">
+          <strong>São Paulo FC (Brasil)</strong><br/>
+          3 títulos, uno de los equipos más importantes de Brasil con varias conquistas internacionales.
+          <br/><a href="https://es.wikipedia.org/wiki/S%C3%A3o_Paulo_Futebol_Clube" target="_blank">Más info</a>
+        </div>
+      </li>
+    </ul>
+    <p>
+      Para más información: <a href="https://es.wikipedia.org/wiki/Copa_Libertadores" target="_blank">Wikipedia - Copa Libertadores</a>
+    </p>
+ 
+  </section>
+
+  <section id="copaamerica">
+    <h2>Copa América y Eurocopa</h2>
+    <p>
+      Son los torneos continentales más relevantes de Sudamérica y Europa respectivamente.
+    </p>
+    <h3>Copa América</h3>
+    <p>
+      Es el campeonato de selecciones más antiguo del mundo, iniciado en 1916. Los máximos campeones son Uruguay y Argentina.
+    </p>
+    <ul class="continentals-list">
+      <li>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fe/Flag_of_Uruguay.svg" alt="Bandera Uruguay" />
+        <div class="continental-info">
+          <strong>Uruguay</strong><br/>
+          15 títulos de Copa América, potencia histórica que marcó la pauta en Sudamérica y el mundo.
+          <br/><a href="https://es.wikipedia.org/wiki/Selecci%C3%B3n_de_f%C3%BAtbol_de_Uruguay" target="_blank">Más info</a>
+        </div>
+      </li>
+      <li>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/1a/Flag_of_Argentina.svg" alt="Bandera Argentina" />
+        <div class="continental-info">
+          <strong>Argentina</strong><br/>
+          También con 16 Copas América, gran tradición futbolística reconocida mundialmente.
+          <br/><a href="https://es.wikipedia.org/wiki/Selecci%C3%B3n_de_f%C3%BAtbol_de_Argentina" target="_blank">Más info</a>
+        </div>
+      </li>
+      <li>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg" alt="Bandera Brasil" />
+        <div class="continental-info">
+          <strong>Brasil</strong><br/>
+          9 títulos de Copa América y potencia mundial con cinco Copas Mundiales.
+          <br/><a href="https://es.wikipedia.org/wiki/Selecci%C3%B3n_de_f%C3%BAtbol_de_Brasil" target="_blank">Más info</a>
+        </div>
+      </li>
+    </ul>
+    <h3>Eurocopa</h3>
+    <p>
+      La Eurocopa es el torneo masculino de selecciones europeas organizado por UEFA desde 1960. Alemania y España son los máximos ganadores.
+    </p>
+    <ul class="continentals-list">
+      <li>
+        <img src="https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg" alt="Bandera Alemania" />
+        <div class="continental-info">
+          <strong>Alemania</strong><br/>
+          3 títulos en Eurocopa y una gran potencia futbolística de Europa con una rica historia.
+          <br/><a href="https://es.wikipedia.org/wiki/Selecci%C3%B3n_de_f%C3%BAtbol_de_Alemania" target="_blank">Más info</a>
+        </div>
+      </li>
+      <li>
+        <img src="https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg" alt="Bandera España" />
+        <div class="continental-info">
+          <strong>España</strong><br/>
+          3 títulos consecutivos (2008, 2012 Euro y 2010 Mundial) destacando un estilo tiki-taka.
+          <br/><a href="https://es.wikipedia.org/wiki/Selecci%C3%B3n_de_f%C3%BAtbol_de_Espa%C3%B1a" target="_blank">Más info</a>
+        </div>
+      </li>
+      <li>
+        <img src="https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg" alt="Bandera Francia" />
+        <div class="continental-info">
+          <strong>Francia</strong><br/>
+          2 títulos en Eurocopa y campeona mundial en 1998 y 2018.
+          <br/><a href="https://es.wikipedia.org/wiki/Selecci%C3%B3n_de_f%C3%BAtbol_de_Francia" target="_blank">Más info</a>
+        </div>
+      </li>
+    </ul>
+    <p>
+      Más detalles Copa América: <a href="https://es.wikipedia.org/wiki/Copa_Am%C3%A9rica" target="_blank">Wikipedia - Copa América</a><br/>
+      Más detalles Eurocopa: <a href="https://es.wikipedia.org/wiki/Campeonato_de_Europa_de_F%C3%BAtbol" target="_blank">Wikipedia - Eurocopa</a>
+    </p>
+  </section>
+
+  <section id="bestplayers">
+    <h1>Jugadores Destacados</h1>
+    <style>
+  body {
+    font-family: 'Montserrat', sans-serif;
+    max-width: 900px;
+    margin: 2rem auto;
+    background: #f9fdfa;
+    color: #222;
+    line-height: 1.5;
+    padding: 0 1rem;
+  }
+  h1 {
+    text-align: center;
+    color: #006622;
+    margin-bottom: 2rem;
+  }
+  ul.players-list {
+    list-style: none;
+    padding-left: 0;
+    columns: 2;
+    -webkit-columns: 2;
+    -moz-columns: 2;
+    gap: 1rem;
+  }
+  ul.players-list li {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    align-items: flex-start;
+    background: #e9f5e9;
+    border-left: 5px solid #00cc44;
+    padding: 0.8rem 1rem;
+    border-radius: 6px;
+  }
+  .player-thumb {
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #009933;
+  }
+  .player-info {
+    max-width: calc(100% - 90px);
+  }
+  .player-info h3 {
+    margin: 0 0 0.2rem 0;
+    color: #004d00;
+  }
+  .player-info p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #2e2e2e;
+  }
+  @media (max-width: 700px) {
+    ul.players-list {
+      columns: 1;
+    }
+  }
+</style>
+</head>
+<body>
+  <h1>Los 100 Mejores Jugadores de la Historia del Fútbol</h1>
+  <ul class="players-list">
+    <li>
+      <img class="player-thumb" src="https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.-VraA4Y31vQskZo6b2YckQHaJe%26pid%3DApi&sp=1747659236T7e17381c125d42bf48b0f88ffa9e35576fb807900e23fdbfb1b2d5777e85dc2b" alt="Pelé" />
+      <div class="player-info">
+        <h3><a href="https://es.wikipedia.org/wiki/Pel%C3%A9" target="_blank" rel="noopener">Pelé (Brasil)</a></h3>
+        <p>Considerado uno de los mejores jugadores de todos los tiempos. Ganó 3 Copas Mundiales (1958, 1962, 1970) y anotó más de 1000 goles en su carrera profesional.</p>
+      </div>
+    </li>
+    <li>
+      <img class="player-thumb" src="https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.CaKOK0x71UIuaj1AOm_gqgHaK2%26pid%3DApi&sp=1747659275T81887a2d5f0f0000ab4551bde0c94a53b2586f1407c10cae390db7143ab5423f" alt="Diego Maradona" />
+      <div class="player-info">
+        <h3><a href="https://es.wikipedia.org/wiki/Diego_Maradona" target="_blank" rel="noopener">Diego Maradona (Argentina)</a></h3>
+        <p>Icono argentino conocido por su habilidad única y liderazgo. Campeón mundial en 1986 con memorables goles y la famosa "Mano de Dios".</p>
+      </div>
+    </li>
+    <li>
+      <img class="player-thumb" src="https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.Ilt-ZrDa2BblrK-DK7_ljQHaEK%26pid%3DApi&sp=1747659315Tb2a17086003ccd8d4feb8e67655fb5f01075ad2a8e1b67ee188b648a0c980377" alt="Lionel Messi" />
+      <div class="player-info">
+        <h3><a href="https://es.wikipedia.org/wiki/Lionel_Messi" target="_blank" rel="noopener">Lionel Messi (Argentina)</a></h3>
+        <p>Uno de los futbolistas más talentosos y ganadores de la historia, ganador de 7 Balones de Oro y múltiples títulos con Barcelona y Argentina.</p>
+      </div>
+    </li>
+    <li>
+      <img class="player-thumb" src="https://upload.wikimedia.org/wikipedia/commons/8/8c/Cristiano_Ronaldo_2018.jpg" alt="Cristiano Ronaldo" />
+      <div class="player-info">
+        <h3><a href="https://es.wikipedia.org/wiki/Cristiano_Ronaldo" target="_blank" rel="noopener">Cristiano Ronaldo (Portugal)</a></h3>
+        <p>Delantero letal y campeón en múltiples ligas y competiciones internacionales. Reconocido por su disciplina, potencia y goles decisivos.</p>
+      </div>
+    </li>
+    <li>
+      <img class="player-thumb" src="https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.dCyFEC4YzeH2bKVaUItcTwHaKT%26pid%3DApi&sp=1747659355T44353d7db7d3b065d633e039cf7a37c4c0940135d529d35ca3beffcae731a422" alt="Johan Cruyff" />
+      <div class="player-info">
+        <h3><a href="https://es.wikipedia.org/wiki/Johan_Cruyff" target="_blank" rel="noopener">Johan Cruyff (Países Bajos)</a></h3>
+        <p>Pionero del "fútbol total", jugador y entrenador revolucionario que dejó una huella profunda en la estrategia del deporte.</p>
+      </div>
+    </li>
+    <li>
+      <img class="player-thumb" src="https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.dJSONcNS1EBTClqXOCq7LQHaF9%26pid%3DApi&sp=1747659392T3ee6b82c8e346e195dd607dbc0ac18e09ac81f46552cf61684178e57f6f407cd" alt="Alfredo Di Stéfano" />
+      <div class="player-info">
+        <h3><a href="https://es.wikipedia.org/wiki/Alfredo_Di_St%C3%A9fano" target="_blank" rel="noopener">Alfredo Di Stéfano (Argentina/España)</a></h3>
+        <p>Clave en la época dorada del Real Madrid; jugador polivalente con gran visión y capacidad goleadora durante los años 50 y 60.</p>
+      </div>
+    </li>
+    <li>
+      <img class="player-thumb" src="https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.h8d0nlDdBdaco9GBoZ5GHgHaE7%26pid%3DApi&sp=1747659417Tdc6d16be593fedb6252940f13d8baa571117ff141981b867d37e2a5ef820a557" alt="Zinedine Zidane" />
+      <div class="player-info">
+        <h3><a href="https://es.wikipedia.org/wiki/Zinedine_Zidane" target="_blank" rel="noopener">Zinedine Zidane (Francia)</a></h3>
+        <p>Mediocampista elegante y decisivo, animó la selección francesa al título mundial en 1998 y conquistó múltiples títulos con Real Madrid.</p>
+      </div>
+    </li>
+    <li>
+      <img class="player-thumb" src="https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.Yg-G6w2c23zTtGTCn9L5VwHaEK%26pid%3DApi&sp=1747659449Tc6beb3bbed24139af0506c00b951f8a28004e305837d02d5df8b09a42f00ef8a" alt="Michel Platini" />
+      <div class="player-info">
+        <h3><a href="https://es.wikipedia.org/wiki/Michel_Platini" target="_blank" rel="noopener">Michel Platini (Francia)</a></h3>
+        <p>Excepcional mediapunta y goleador, ganador de tres Balones de Oro consecutivos en los años 80 y líder de Francia en la Eurocopa 1984.</p>
+      </div>
+    </li>
+    <li>
+      <img class="player-thumb" src="https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.l1w8JsTu8g8gqo7F41Mq0AHaE8%26pid%3DApi&sp=1747659474T0f4c4159cfee19c5c001d59af9e09ed5795663278ece7fc0f12e377df3d53031" alt="Franz Beckenbauer" />
+      <div class="player-info">
+        <h3><a href="https://es.wikipedia.org/wiki/Franz_Beckenbauer" target="_blank" rel="noopener">Franz Beckenbauer (Alemania)</a></h3>
+        <p>"El Káiser", revolucionó el rol de líbero y fue campeón del mundo como jugador y entrenador con Alemania.</p>
+      </div>
+    </li>
+    <li>
+      <img class="player-thumb" src="https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.4vDMDHX8pyGnOrcO3c0foAHaEK%26pid%3DApi&sp=1747659507T160164d2afcbbecc4ec287bc81ee2cd91c0231c33fad263c4c8492aa1b6a7f9d" alt="Ronaldinho" />
+      <div class="player-info">
+        <h3><a href="https://es.wikipedia.org/wiki/Ronaldinho" target="_blank" rel="noopener">Ronaldinho (Brasil)</a></h3>
+        <p>Jugador creativo y mágico, ganador del Balón de Oro y esencial en el Barcelona de la época dorada de principios de los 2000.</p>
+      </div>
+    </li>
+    <!-- Additional players omitted for brevity -->
+  </ul></body>
+  </section>
+
+  <section id="news">
+     <h2>📰 Últimas Noticias</h2>
+     <ul id="lista-noticias">
+        <li><strong>17-05-2025:</strong> Mbappé ficha por el Real Madrid.</li>
+        <li><strong>15-05-2025:</strong> Inter gana la Serie A 2025.</li>
+      </ul>
+      
+</head>
+<body>
+  <h1>Agregar Noticias o Comentarios</h1>
+  <form id="news-form">
+    <label for="news-input">Escribe tu noticia o comentario:</label>
+    <textarea id="news-input" placeholder="Escribe aquí..." required></textarea>
+    <button type="submit">Agregar</button>
+  </form>
+
+  <div id="news-list" aria-live="polite" aria-relevant="additions">
+    <!-- Noticias y comentarios aparecerán aquí -->
+  </div>
+
+<script>
+  const form = document.getElementById('news-form');
+  const newsInput = document.getElementById('news-input');
+  const newsList = document.getElementById('news-list');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const text = newsInput.value.trim();
+    if (text.length === 0) {
+      alert('Por favor, escribe una noticia o comentario antes de agregar.');
+      return;
+    }
+
+    const div = document.createElement('div');
+    div.className = 'news-item';
+    div.textContent = text;
+    // Agregar al principio para que sea el más reciente arriba
+    newsList.prepend(div);
+
+    newsInput.value = '';
+  });
+</script>
+</body></section>
+
+  <section id="polls">
+    <h2>Encuestas Interactivas</h2>
+
+    <div>
+  <div style="margin-top: 2rem;">
+      <h3>¿Quién es tu jugador favorito?</h3>
+    <form id="quiz-form">
+    <p>1. ¿Cuál es tu posición favorita?</p>
+    <select name="p1">
+      <option value="delantero">Delantero</option>
+      <option value="centrocampista">Centrocampista</option>
+      <option value="defensa">Defensa</option>
+      <option value="portero">Portero</option>
+    </select>
+
+    <p>2. ¿Prefieres jugar en equipo o destacar individualmente?</p>
+    <select name="p2">
+      <option value="equipo">Jugar en equipo</option>
+      <option value="individual">Destacar individualmente</option>
+    </select>
+
+    <p>3. ¿Qué te define más?</p>
+    <select name="p3">
+      <option value="rapidez">Rapidez</option>
+      <option value="tecnica">Técnica</option>
+      <option value="fuerza">Fuerza</option>
+      <option value="liderazgo">Liderazgo</option>
+    </select>
+
+    <p>4. ¿Cuál es tu pierna hábil?</p>
+    <select name="p4">
+      <option value="izquierda">Izquierda</option>
+      <option value="derecha">Derecha</option>
+      <option value="ambas">Ambas</option>
+    </select>
+
+    <p>5. ¿Cuál es tu actitud en la cancha?</p>
+    <select name="p5">
+      <option value="calmado">Calmado</option>
+      <option value="apasionado">Apasionado</option>
+      <option value="estratega">Estratega</option>
+      <option value="agresivo">Agresivo</option>
+    </select>
+
+    <p>6. ¿Cuál es tu ídolo del fútbol?</p>
+    <select name="p6">
+      <option value="messi">Messi</option>
+      <option value="cr7">Cristiano Ronaldo</option>
+      <option value="neymar">Neymar</option>
+      <option value="maldini">Maldini</option>
+    </select>
+
+    <p>7. ¿Te gusta arriesgar?</p>
+    <select name="p7">
+      <option value="si">Sí</option>
+      <option value="no">No</option>
+    </select>
+
+    <p>8. ¿Te consideras líder?</p>
+    <select name="p8">
+      <option value="mucho">Mucho</option>
+      <option value="poco">Poco</option>
+    </select>
+
+    <p>9. ¿Qué valoras más en un partido?</p>
+    <select name="p9">
+      <option value="ganar">Ganar</option>
+      <option value="jugar bien">Jugar bien</option>
+      <option value="divertirse">Divertirse</option>
+    </select>
+
+    <p>10. ¿Qué estilo prefieres?</p>
+    <select name="p10">
+      <option value="europeo">Fútbol europeo</option>
+      <option value="sudamericano">Fútbol sudamericano</option>
+    </select>
+
+    <button type="submit">Ver resultado</button>
+  </form>
+
+  <div id="resultado"></div>
+</section>
+
+  <script>
+  document.getElementById("quiz-form").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const form = e.target;
+    const respuestas = {
+      p1: form.p1.value,
+      p2: form.p2.value,
+      p3: form.p3.value,
+      p4: form.p4.value,
+      p5: form.p5.value,
+      p6: form.p6.value,
+      p7: form.p7.value,
+      p8: form.p8.value,
+      p9: form.p9.value,
+      p10: form.p10.value
+    };
+
+    let puntajes = {
+      messi: 0,
+      cr7: 0,
+      neymar: 0,
+      mbappe: 0,
+      modric: 0,
+      haaland: 0,
+      vanDijk: 0,
+      casillas: 0
+    };
+
+    // Ponderar las respuestas
+    if (respuestas.p1 === "delantero") { puntajes.messi++; puntajes.cr7++; puntajes.neymar++; puntajes.haaland++; }
+    if (respuestas.p1 === "centrocampista") { puntajes.modric++; }
+    if (respuestas.p1 === "defensa") { puntajes.vanDijk++; }
+    if (respuestas.p1 === "portero") { puntajes.casillas++; }
+
+    if (respuestas.p2 === "equipo") { puntajes.messi++; puntajes.modric++; }
+    if (respuestas.p2 === "individual") { puntajes.cr7++; puntajes.neymar++; }
+
+    if (respuestas.p3 === "rapidez") { puntajes.mbappe++; puntajes.neymar++; }
+    if (respuestas.p3 === "tecnica") { puntajes.messi++; }
+    if (respuestas.p3 === "fuerza") { puntajes.vanDijk++; puntajes.haaland++; }
+    if (respuestas.p3 === "liderazgo") { puntajes.casillas++; puntajes.modric++; }
+
+    if (respuestas.p5 === "apasionado") { puntajes.neymar++; }
+    if (respuestas.p5 === "calmado") { puntajes.modric++; }
+    if (respuestas.p5 === "agresivo") { puntajes.vanDijk++; }
+    if (respuestas.p5 === "estratega") { puntajes.messi++; }
+
+    if (respuestas.p6 === "messi") puntajes.messi += 2;
+    if (respuestas.p6 === "cr7") puntajes.cr7 += 2;
+    if (respuestas.p6 === "neymar") puntajes.neymar += 2;
+    if (respuestas.p6 === "maldini") puntajes.vanDijk += 2;
+
+    if (respuestas.p9 === "ganar") puntajes.cr7++;
+    if (respuestas.p9 === "jugar bien") puntajes.messi++;
+    if (respuestas.p9 === "divertirse") puntajes.neymar++;
+
+    // Obtener jugador con mayor puntaje
+    const jugador = Object.keys(puntajes).reduce((a, b) => puntajes[a] > puntajes[b] ? a : b);
+
+    const nombres = {
+      messi: "Lionel Messi",
+      cr7: "Cristiano Ronaldo",
+      neymar: "Neymar Jr",
+      mbappe: "Kylian Mbappe",
+      modric: "Luka Modric",
+      haaland: "Erling Haaland",
+      vanDijk: "Virgil van Dijk",
+      casillas: "Iker Casillas"
+    };
+
+    document.getElementById("resultado").innerHTML = `<h3>✨ ¡Te pareces a ${nombres[jugador]}! ✨</h3>`;
+  });
+</script>
+    </div>
+
+    <div style="margin-top: 2rem;">
+
+      <h1>Encuesta: ¿Cuál es tu jugador favorito?</h1>
+  
+  <form id="poll-form">
+    <label><input type="radio" name="player" value="Lionel Messi" required /> Lionel Messi</label>
+    <label><input type="radio" name="player" value="Cristiano Ronaldo" /> Cristiano Ronaldo</label>
+    <label><input type="radio" name="player" value="Pelé" /> Pelé</label>
+    <label><input type="radio" name="player" value="Diego Maradona" /> Diego Maradona</label>
+    <label><input type="radio" name="player" value="Zinedine Zidane" /> Zinedine Zidane</label>
+    <br /><br />
+    <button type="submit">Votar</button>
+    </form>
+  <div id="results">
+    <h2>Votos recibidos</h2>
+    <div id="vote-list">
+        </div>
+  </div>
+<script>
+  const form = document.getElementById('poll-form');
+  const voteList = document.getElementById('vote-list');
+  // Llevar conteo de votos
+  const votes = {
+    'Lionel Messi': 0,
+    'Cristiano Ronaldo': 0,
+    'Pelé': 0,
+    'Diego Maradona': 0,
+    'Zinedine Zidane': 0
+  };
+  function actualizarResultados() {
+    // Limpiar lista
+    voteList.innerHTML = '';
+    for (const player in votes) {
+      if (votes[player] > 0) {
+        const div = document.createElement('div');
+        div.className = 'vote-entry';
+        div.textContent = `${player}: ${votes[player]} voto${votes[player] > 1 ? 's' : ''}`;
+        voteList.appendChild(div);
+        }
+    }
+    if (voteList.innerHTML === '') {
+      voteList.textContent = 'Aún no hay votos registrados.';
+    }
+  }
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const selected = form.player.value;
+    if (!selected) return alert('Selecciona una opción para votar.');
+    votes[selected]++;
+    actualizarResultados();
+    form.reset();
+  });
+  // Mostrar resultados inicial (vacío)
+  actualizarResultados();
+</script>
+
+<footer>
+  <p>©Fútbol. </p>
+</footer>
+
+</body>
+</html>
